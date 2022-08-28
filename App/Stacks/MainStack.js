@@ -13,6 +13,7 @@ import Campaign from '../Screens/Campaign';
 import Profile from '../Screens/Profile';
 import Notification from '../Screens/Notification';
 import EditProfile from '../Screens/EditProfile';
+import RouteMap from '../Screens/RouteMap';
 
 const MainStack = () => {
   return (
@@ -24,6 +25,7 @@ const MainStack = () => {
         }}>
         <Stack.Screen name="Top" component={Top} />
         <Stack.Screen name="Notification" component={Notification} />
+        <Stack.Screen name="RouteMap" component={RouteMap} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
    
         <Stack.Screen name="Campaign" component={Campaign} />

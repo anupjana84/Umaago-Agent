@@ -122,7 +122,7 @@ const Register = ({ navigation }) => {
       }).then(result => {
         setGetState(result.states)
         
-        // console.log(result.states, 'RE')
+         console.log(result.states, 'RE')
         // console.log(result, 'RE')
       })
       .catch(err => console.log(err))

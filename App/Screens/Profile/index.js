@@ -194,7 +194,7 @@ const Profile = ({navigation}) => {
               <View style={styles.itemViewRight}>
               <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('Campaign');
+                    navigation.navigate('RouteMap');
                   }}>
                 <Text
                   style={{fontSize: 22, fontWeight: 'bold', color: '#ff3259'}}>
