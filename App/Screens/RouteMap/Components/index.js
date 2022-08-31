@@ -95,6 +95,7 @@ class Count extends Component {
   }
 
   start = () => {
+    this.props.chatngeLoacationStart()
     this.props.getLocation('Started')
     //  alert('Started')
     //  console.log('Started')
@@ -124,6 +125,7 @@ class Count extends Component {
   };
 
   stop = () => {
+    this.props.chatngeLoacationStop()
     this.props.getLocation('Pause')
     //  alert('Pause')
      console.log('Pause')
@@ -137,6 +139,7 @@ class Count extends Component {
     });
   };
   reset = () => {
+    this.props.chatngeLoacationStop()
     this.props.getLocation('Completed')
     // alert('Completed')
     console.log('Completed')
@@ -147,6 +150,7 @@ class Count extends Component {
     });
   };
   resume = () => {
+    this.props.chatngeLoacationStart()
     this.props.getLocation('Play')
     //  alert('play')
      console.log('play')

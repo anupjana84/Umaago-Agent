@@ -14,7 +14,7 @@ const Running = ({ getAllCampaignHistory }) => {
   const [loding, setLoding] = useState(false)
 const isFocused=useIsFocused()
   const { running } = useSelector((state) => state.CampaignHistory)
-  console.log(running, 'run')
+  // console.log(running, 'run')
 
 
   useEffect(() => {
@@ -98,7 +98,7 @@ const isFocused=useIsFocused()
                   </TouchableOpacity>
                 </>
               )}
-
+ 
             </>
 
           )

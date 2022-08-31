@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
+import { useColorScheme } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
@@ -30,6 +31,7 @@ import { useDispatch } from 'react-redux';
 
 
 const Register = ({ navigation }) => {
+  const scheme = useColorScheme();
   const dispatch =useDispatch()
   const [fName, setFName] = useState('');
   const [lName, setLName] = useState('');
@@ -366,7 +368,8 @@ if (pass.length<6) {
           </TouchableOpacity>
         </View>
         <View style={styles.headerMiddle}>
-          <Text style={{ color: 'white', fontSize: 16 }}>Register</Text>
+          {/* <Text style={{ color: 'white', fontSize: 16 }}>Register</Text> */}
+          <Text style={{ color: scheme === 'dark' ? 'white' : 'black'}}>Hello World</Text>
         </View>
         <View style={styles.headerLeft} />
       </View>
@@ -381,8 +384,10 @@ if (pass.length<6) {
             borderRadius: 20,
           }}>
           <TextInput
-            style={styles.inputStyle}
+            style={{...styles.inputStyle}}
             label="First Name"
+            theme={{ colors: { text: "black", accent: "black", primary: "black", placeholder: "black", background: "transparent" } }} underlineColor="#d1d1d3" underlineColorAndroid="#f5f5f5"
+            placeholderTextColor="#000" 
             activeUnderlineColor="#ff3259"
             onChangeText={text => checkname(text)}
           />
@@ -392,6 +397,7 @@ if (pass.length<6) {
           <TextInput
             style={styles.inputStyle}
             label="Last Name"
+            theme={{ colors: { text: "black", accent: "black", primary: "black", placeholder: "black", background: "transparent" } }} underlineColor="#d1d1d3" underlineColorAndroid="#f5f5f5"
             activeUnderlineColor="#ff3259"
             onChangeText={text => checkln(text)}
           />
@@ -401,6 +407,7 @@ if (pass.length<6) {
           <TextInput
             style={styles.inputStyle}
             label="Phone Number"
+            theme={{ colors: { text: "black", accent: "black", primary: "black", placeholder: "black", background: "transparent" } }} underlineColor="#d1d1d3" underlineColorAndroid="#f5f5f5"
             maxLength={10}
             keyboardType="numeric"
             activeUnderlineColor="#ff3259"
@@ -414,6 +421,7 @@ if (pass.length<6) {
             activeUnderlineColor="#ff3259"
             style={[styles.inputStyle]}
             label="Enter Password"
+            theme={{ colors: { text: "black", accent: "black", primary: "black", placeholder: "black", background: "transparent" } }} underlineColor="#d1d1d3" underlineColorAndroid="#f5f5f5"
           
             secureTextEntry={show}
             onChangeText={text => checkPasswordlength(text)}
@@ -431,7 +439,7 @@ if (pass.length<6) {
             activeUnderlineColor="#ff3259"
             style={[styles.inputStyle]}
             label="Confirm Password"
-            
+            theme={{ colors: { text: "black", accent: "black", primary: "black", placeholder: "black", background: "transparent" } }} underlineColor="#d1d1d3" underlineColorAndroid="#f5f5f5"
             secureTextEntry={show1}
             onChangeText={text => checkPassword(text)}
             right={
@@ -448,6 +456,7 @@ if (pass.length<6) {
           <TextInput
             style={styles.inputStyle}
             label="Aadhaar Number"
+            theme={{ colors: { text: "black", accent: "black", primary: "black", placeholder: "black", background: "transparent" } }} underlineColor="#d1d1d3" underlineColorAndroid="#f5f5f5"
             keyboardType="numeric"
             maxLength={16}
             activeUnderlineColor="#ff3259"
@@ -459,6 +468,7 @@ if (pass.length<6) {
           <TextInput
             style={styles.inputStyle}
             label="Truck No"
+            theme={{ colors: { text: "black", accent: "black", primary: "black", placeholder: "black", background: "transparent" } }} underlineColor="#d1d1d3" underlineColorAndroid="#f5f5f5"
             value={truckNo}
             activeUnderlineColor="#ff3259"
             onChangeText={text => setTruckNo(text)}
@@ -572,6 +582,7 @@ if (pass.length<6) {
           <TextInput
             style={styles.inputStyle}
             label="Division"
+            theme={{ colors: { text: "black", accent: "black", primary: "black", placeholder: "black", background: "transparent" } }} underlineColor="#d1d1d3" underlineColorAndroid="#f5f5f5"
             value={division}
             activeUnderlineColor="#ff3259"
             onChangeText={text => setDivision(text)}
@@ -579,6 +590,7 @@ if (pass.length<6) {
           <TextInput
             style={styles.inputStyle}
             label="Subdivision"
+            theme={{ colors: { text: "black", accent: "black", primary: "black", placeholder: "black", background: "transparent" } }} underlineColor="#d1d1d3" underlineColorAndroid="#f5f5f5"
             value={subDivision}
             activeUnderlineColor="#ff3259"
             onChangeText={text => setSubDivision(text)}
@@ -586,6 +598,7 @@ if (pass.length<6) {
           <TextInput
             style={styles.inputStyle}
             label="Area Name"
+            theme={{ colors: { text: "black", accent: "black", primary: "black", placeholder: "black", background: "transparent" } }} underlineColor="#d1d1d3" underlineColorAndroid="#f5f5f5"
             value={areaName}
             activeUnderlineColor="#ff3259"
             onChangeText={text => setAreaName(text)}
