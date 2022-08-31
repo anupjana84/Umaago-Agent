@@ -33,7 +33,7 @@ export const getAllCampaignHistory= (setLoding)=> async(dispatch)=>{
                     data:response.data
                 }
             })
-        //    console.log(response.data)
+            // console.log(response.data,'ddd')
         })
         .catch(error => {
             console.log(error)

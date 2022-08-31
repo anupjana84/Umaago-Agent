@@ -11,6 +11,7 @@ import {
   } from 'react-native';
   import React from 'react';
   import { TextInput, } from 'react-native-paper';
+  import AntDesign from 'react-native-vector-icons/AntDesign';
 
   import Entypo from 'react-native-vector-icons/Entypo';
   const {height} = Dimensions.get('screen');
@@ -27,6 +28,27 @@ import {
           />
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{flex: 1}}>
+            <View
+          style={{
+            width: '100%',
+            height: 70,
+            backgroundColor: '#ff3259',
+          }}>
+          <View style={styles.topView}>
+            <View style={styles.topViewLeft}>
+              <TouchableOpacity onPress={()=>navigation.goBack()} >
+                <AntDesign name="left" size={24} color="white" />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.topViewMiddle}>
+              <Text style={{color: 'white', fontSize: 20, fontWeight: '600'}}>
+                Profile
+              </Text>
+            </View>
+            <View style={styles.topViewLeft} />
+          </View>
+        </View>
+             
               <View
                 style={{
                   width: '100%',
@@ -52,7 +74,7 @@ import {
                     color: 'white',
                     fontWeight: 'bold',
                   }}>
-                  Forgot Password
+                  Forget Password
                 </Text>
   
                 <View
@@ -138,5 +160,29 @@ import {
       backgroundColor: 'transparent',
       borderColor: '#5d05d5',
     },
+    //topview
+  topView: {
+    width: '100%',
+    height: 50,
+    backgroundColor: '#ff3259',
+    flexDirection: 'row',
+  },
+  topViewLeft: {
+    width: '20%',
+    height: '100%',
+    justifyContent: 'center',
+    paddingLeft: 15,
+  },
+  topViewMiddle: {
+    width: '60%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  topViewLower: {
+    width: '100%',
+    height: 150,
+    backgroundColor: '#ff3259',
+  },
   });
   

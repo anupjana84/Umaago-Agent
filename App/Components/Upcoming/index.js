@@ -1,18 +1,17 @@
 import {
   StyleSheet, Text,
-  TouchableOpacity, ScrollView, FlatList, View
+  FlatList, View,
+  Dimensions
 } from 'react-native';
 import React from 'react';
-import { Card, Title, } from 'react-native-paper';
+import { Card, Title } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
-moment
+const {height} =Dimensions.get('screen')
 const Upcoming = () => {
   const CampaignHistory = useSelector((state) => state.CampaignHistory)
   // console.log(CampaignHistory.completed,'CampaignHistory');
-  // console.log(CampaignHistory.upcomming,'completed');
-
-  // console.log(CampaignHistory.upcomming, 'running');
+ 
 
   return (
    
@@ -48,17 +47,15 @@ const Upcoming = () => {
           }}
 
           keyExtractor={(item, i) => i.toString()}
-
+          ListEmptyComponent={() => (
+            <View style={styles.emptyContainer}>
+              <Title>No Data found</Title>
+            </View>
+          )}
         />
 
 
-        {/* <TouchableOpacity
-          onPress={() => alert('Submit Successfull')}
-          style={styles.nextBottom}>
-          <Text style={{color: 'white', fontSize: 20, fontWeight: '600'}}>
-           Start Campaign
-          </Text>
-        </TouchableOpacity> */}
+       
       </View>
    
   );
@@ -94,6 +91,13 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
-  }
+  },
+  emptyContainer: {
+    height: height-150,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    
+  },
   //next Bottom
 });

@@ -1,7 +1,7 @@
 
 import {
   StyleSheet, Text,
-  TouchableOpacity, ScrollView, FlatList, View
+   FlatList, View
 } from 'react-native';
 import React from 'react';
 import { Card, Title, } from 'react-native-paper';
@@ -49,7 +49,11 @@ const Completed = () => {
           }}
 
           keyExtractor={(item, i) => i.toString()}
-
+          ListEmptyComponent={() => (
+            <View style={styles.emptyContainer}>
+              <Title>No post found</Title>
+            </View>
+          )}
         />
 
 
@@ -95,6 +99,12 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
-  }
+  },
+  emptyContainer: {
+    flex: 1,
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   //next Bottom
 });

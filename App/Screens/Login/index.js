@@ -21,6 +21,7 @@ import { USER_SET } from '../../Actions/ActionType/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loder from '../../Components/Loder';
 import { useDispatch } from 'react-redux';
+import FlashMessage from "react-native-flash-message";
 
 
 const Login = ({ navigation }) => {
@@ -54,14 +55,16 @@ const Login = ({ navigation }) => {
         // console.log(res,'red');
         return res.json()
       }).then(async (result) => {
-      // console.log(result);
+       console.log(result ,'dfdsf');
         if (result?.message) {
           setLodding(false)
-          alertMessage('Credentials Wrong', '#E07C24')
+          alertMessage('Credentials Wrong', '#A77B06')
         } else {
           setPhone('')
           setPassword('')
           Axios.defaults.headers.common['Authorization'] = `Bearer ${result.access_token}`
+          // console.log( Axios.defaults.headers,'result');
+          // console.log(result);
           await AsyncStorage.setItem('@user', JSON.stringify(result))
           dispatch({
             type: USER_SET,
@@ -90,7 +93,8 @@ const Login = ({ navigation }) => {
           barStyle="default"
           hidden={false}
         />
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled={true}
+       keyboardShouldPersistTaps="handled">
           <View style={{ flex: 1 }}>
             <View
               style={{
@@ -117,7 +121,7 @@ const Login = ({ navigation }) => {
                   color: 'white',
                   fontWeight: 'bold',
                 }}>
-                LOG IN
+                Log In
               </Text>
 
               <View
@@ -128,7 +132,7 @@ const Login = ({ navigation }) => {
                   justifyContent: 'space-between',
                 }}>
                 <View
-                  style={{ height: 50, width: '100%', paddingHorizontal: 20 }}>
+                  style={{ height: 60, width: '100%', paddingHorizontal: 20 }}>
                   <TextInput
                     style={styles.inputStyle}
                     label="Enter Phone Number"
@@ -152,7 +156,7 @@ const Login = ({ navigation }) => {
                 </View>
 
                 <View
-                  style={{ height: 50, width: '100%', paddingHorizontal: 20 }}>
+                  style={{ height: 60, width: '100%', paddingHorizontal: 20 }}>
                   <TextInput
                     theme={{
                       colors: {
@@ -190,7 +194,7 @@ const Login = ({ navigation }) => {
 
                   <TouchableOpacity onPress={() => navigation.navigate('ForGotPassword')}>
                     <Text style={{ marginTop: 25, color: 'white' }}>
-                      Forgote Password
+                      Forget Password
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -254,8 +258,10 @@ const Login = ({ navigation }) => {
           </View>
         </ScrollView>
         {lodding && <Loder lodding={lodding} />}
+        <FlashMessage />
 
       </SafeAreaView>
+
     </>
   );
 };

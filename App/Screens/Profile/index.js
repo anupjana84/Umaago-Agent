@@ -15,6 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import React,{useRef, useEffect} from 'react';
 import {Title} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
@@ -96,6 +97,10 @@ const Profile = ({navigation}) => {
       );
     };
    }, [])
+   const logout= async()=>{
+    await AsyncStorage.removeItem('@user')
+    navigation.navigate('Home')
+   }
    
   return (
     <>
@@ -175,7 +180,7 @@ const Profile = ({navigation}) => {
                       fontWeight: 'bold',
                       color: '#ff3259',
                     }}>
-                    Edite Profile
+                    Edit Profile
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -194,11 +199,11 @@ const Profile = ({navigation}) => {
               <View style={styles.itemViewRight}>
               <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('RouteMap');
+                    navigation.navigate('Campaign');
                   }}>
                 <Text
                   style={{fontSize: 22, fontWeight: 'bold', color: '#ff3259'}}>
-                  Compaign History
+                  Campaign History
                 </Text>
                 </TouchableOpacity>
               </View>
@@ -219,6 +224,30 @@ const Profile = ({navigation}) => {
                   style={{fontSize: 22, fontWeight: 'bold', color: '#ff3259'}}>
                   Change Password{}
                 </Text>
+              </View>
+            </View>
+            {/* =========Item ========= */}
+            {/* =========Item ========= */}
+            <View style={styles.itemView}>
+              <View style={styles.itemViewLeft}>
+                <LinearGradient
+                  colors={['#FFA68D', '#FD3A84']}
+                  start={{x: 0.0, y: 0.0}}
+                  end={{x: 0.0, y: 1.0}}
+                  style={styles.CircleShapeView}>
+                  <AntDesign name="setting" size={24} color="white" />
+                </LinearGradient>
+              </View>
+              <View style={styles.itemViewRight}>
+              <TouchableOpacity
+                  onPress={() => {
+                   logout()
+                  }}>
+                <Text
+                  style={{fontSize: 22, fontWeight: 'bold', color: '#ff3259'}}>
+                 Logout
+                </Text>
+                </TouchableOpacity>
               </View>
             </View>
             {/* =========Item ========= */}
