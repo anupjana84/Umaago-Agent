@@ -21,11 +21,11 @@ import { USER_SET } from '../../Actions/ActionType/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loder from '../../Components/Loder';
 import { useDispatch } from 'react-redux';
-import FlashMessage from "react-native-flash-message";
+
 
 
 const Login = ({ navigation }) => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   const [phone, setPhone] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [show, setShow] = React.useState(true);
@@ -44,7 +44,7 @@ const Login = ({ navigation }) => {
       return await fetch(`${Base_url}/login`, {
         method: 'POST',
         body: JSON.stringify({
-          phone_no:phone,
+          phone_no: phone,
           password
         }),
         headers: {
@@ -55,7 +55,7 @@ const Login = ({ navigation }) => {
         // console.log(res,'red');
         return res.json()
       }).then(async (result) => {
-       console.log(result ,'dfdsf');
+        console.log(result, 'dfdsf');
         if (result?.message) {
           setLodding(false)
           alertMessage('Credentials Wrong', '#A77B06')
@@ -74,7 +74,7 @@ const Login = ({ navigation }) => {
           })
           setLodding(false)
           setTimeout(() => {
-            
+
             navigation.navigate('Profile')
           }, 1000);
           // console.log(result, 'rd')
@@ -93,27 +93,27 @@ const Login = ({ navigation }) => {
           barStyle="default"
           hidden={false}
         />
-        <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled={true}
-       keyboardShouldPersistTaps="handled">
-          <View style={{ flex: 1 }}>
-            <View
-              style={{
-                width: '100%',
-                height: 250,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: '#ff3259',
-              }}>
-              <Image
-                source={require('../../Images/homeLogo1.png')}
-                style={{ width: 200, height: 200, resizeMode: 'contain' }}
-              />
-            </View>
-            <View
-              style={{
-                height: height - 350,
-                justifyContent: 'space-between',
-              }}>
+        <ScrollView showsVerticalScrollIndicator={false}
+          nestedScrollEnabled={true}
+          keyboardShouldPersistTaps="handled"
+
+        >
+          {/* ==========upper========= */}
+          <View style={{
+            width: '100%', height: 200,
+            alignItems: 'center'
+          }}>
+            <Image
+              source={require('../../Images/homeLogo1.png')}
+              style={{ width: 200, height: 200, resizeMode: 'contain' }}
+            />
+
+
+          </View>
+          {/* ==========upper========= */}
+          {/* ==========Middle========= */}
+          <View style={{ width: '100%', height: 250, }}>
+            <View style={{ width: "100%", height: '15%' }}>
               <Text
                 style={{
                   textAlign: 'center',
@@ -123,142 +123,138 @@ const Login = ({ navigation }) => {
                 }}>
                 Log In
               </Text>
-
+            </View>
+            <View style={{
+              width: "100%", height: 200, justifyContent: 'flex-end',
+            }}>
               <View
-                style={{
-                  width: '100%',
-                  height: '50%',
-                  paddingVertical: 30,
-                  justifyContent: 'space-between',
-                }}>
-                <View
-                  style={{ height: 60, width: '100%', paddingHorizontal: 20 }}>
-                  <TextInput
-                    style={styles.inputStyle}
-                    label="Enter Phone Number"
-                    value={phone}
-                    keyboardType="numeric"
-                    maxLength={10}
-                    theme={{
-                      colors: {
-                        text: '#ffffff',
-                        accent: '#ffffff',
-                        primary: '#ffffff',
-                        placeholder: '#ffffff',
-                        background: 'transparent',
-                      },
-                    }}
-                    underlineColor="#ffffff"
-                    underlineColorAndroid="#ffffff"
-                    onChangeText={text => setPhone(text)}
+                style={{ height: 90, width: '100%', paddingHorizontal: 20 }}>
+                <TextInput
+                  style={styles.inputStyle}
+                  label="Enter Phone Number"
+                  value={phone}
+                  keyboardType="numeric"
+                  maxLength={10}
+                  theme={{
+                    colors: {
+                      text: '#ffffff',
+                      accent: '#ffffff',
+                      primary: '#ffffff',
+                      placeholder: '#ffffff',
+                      background: 'transparent',
+                    },
+                  }}
+                  underlineColor="#ffffff"
+                  underlineColorAndroid="#ffffff"
+                  onChangeText={text => setPhone(text)}
 
-                  />
-                </View>
-
-                <View
-                  style={{ height: 60, width: '100%', paddingHorizontal: 20 }}>
-                  <TextInput
-                    theme={{
-                      colors: {
-                        text: '#ffffff',
-                        accent: '#ffffff',
-                        primary: '#ffffff',
-                        placeholder: '#ffffff',
-                        background: 'transparent',
-                      },
-                    }}
-                    underlineColor="#ffffff"
-                    underlineColorAndroid="#ffffff"
-                    style={[styles.inputStyle, styles.textFocus]}
-                    label="Enter Password"
-                    value={password}
-                    secureTextEntry={show}
-                    onChangeText={text => setPassword(text)}
-                    right={
-
-                      <TextInput.Icon
-                        onPress={() => setShow(!show)}
-                        name={() => <Ionicons name={!show ? "md-eye-outline" : 'md-eye-off-outline'} size={20} color="white" />}
-                      />
-
-                    }
-                  />
-                </View>
-                <View
-                  style={{
-                    height: 50,
-                    width: '100%',
-                    paddingRight: 20,
-                    alignItems: 'flex-end',
-                  }}>
-
-                  <TouchableOpacity onPress={() => navigation.navigate('ForGotPassword')}>
-                    <Text style={{ marginTop: 25, color: 'white' }}>
-                      Forget Password
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+                />
               </View>
               <View
-                style={{
-                  width: '100%',
-                  height: '50%',
-                }}>
-                <TouchableOpacity
-                  onPress={singIn}
-                  style={{
-                    width: '80%',
-                    height: 50,
-                    alignSelf: 'center',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 25,
-                    backgroundColor: '#ff99ac',
-                  }}>
-                  <Text
-                    style={{ fontSize: 18, fontWeight: '800', color: '#ff3259' }}>
-                    Login
-                  </Text>
-                </TouchableOpacity>
-                <View
-                  style={{
-                    width: '65%',
-                    height: 40,
-                    alignSelf: 'center',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginTop: 30,
-                  }}>
-                  <View
-                    style={{
-                      width: '55%',
-                      height: '100%',
-                      justifyContent: 'center',
+                style={{ height: 90, width: '100%', paddingHorizontal: 20 }}>
+                <TextInput
+                  theme={{
+                    colors: {
+                      text: '#ffffff',
+                      accent: '#ffffff',
+                      primary: '#ffffff',
+                      placeholder: '#ffffff',
+                      background: 'transparent',
+                    },
+                  }}
+                  underlineColor="#ffffff"
+                  underlineColorAndroid="#ffffff"
+                  style={[styles.inputStyle, styles.textFocus]}
+                  label="Enter Password"
+                  value={password}
+                  secureTextEntry={show}
+                  onChangeText={text => setPassword(text)}
+                  right={
 
-                      alignItems: 'flex-end'
-                    }}>
-                    <Text style={{ color: 'white', fontSize: 14 }}>Don't Have Account,</Text>
-                  </View>
-                  <View
-                    style={{
-                      width: '45%',
-                      height: '100%',
-                      justifyContent: 'center',
-                      alignItems: 'flex-start',
-                      paddingLeft: 8
+                    <TextInput.Icon
+                      onPress={() => setShow(!show)}
+                      name={() => <Ionicons name={!show ? "md-eye-outline" : 'md-eye-off-outline'} size={20} color="white" />}
+                    />
 
-                    }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Register')} >
-                      <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>Register</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
+                  }
+                />
               </View>
             </View>
+
           </View>
+          {/* ==========Middle========= */}
+          {/* ==========Lower========= */}
+          <View style={{
+            width: '100%', height: 300,
+          }}>
+
+
+            <TouchableOpacity onPress={() => navigation.navigate('ForGotPassword')}>
+              <Text style={{ color: 'white', textAlign: 'right', marginRight: 20 }}>
+                Forget Password
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={singIn}
+              style={{
+                width: '80%',
+                height: 50,
+                marginTop:20,
+                alignSelf: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 25,
+                backgroundColor: '#ff99ac',
+              }}>
+              <Text
+                style={{ fontSize: 18, fontWeight: '800', color: '#ff3259' }}>
+                Login
+              </Text>
+            </TouchableOpacity>
+            <View
+              style={{
+                width: '65%',
+                height: 40,
+                alignSelf: 'center',
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginTop: 30,
+              }}>
+              <View
+                style={{
+                  width: '55%',
+                  height: '100%',
+                  justifyContent: 'center',
+
+                  alignItems: 'flex-end'
+                }}>
+                <Text style={{ color: 'white', fontSize: 14 }}>Don't Have Account,</Text>
+              </View>
+              <View
+                style={{
+                  width: '45%',
+                  height: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'flex-start',
+                  paddingLeft: 8
+
+                }}>
+                <TouchableOpacity onPress={() => navigation.navigate('Register')} >
+                  <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>Register</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+
+
+
+          </View>
+
+          {/* ==========Lower========= */}
+         
         </ScrollView>
         {lodding && <Loder lodding={lodding} />}
-        <FlashMessage />
+
 
       </SafeAreaView>
 

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 
+
 const Home = ({navigation}) => {
   return (
     <>
@@ -31,6 +32,7 @@ const Home = ({navigation}) => {
           </Text>
         </TouchableOpacity>
       </ImageBackground>
+     
     </>
   );
 };

@@ -12,7 +12,7 @@ import moment from 'moment';
 
 const Running = ({ getAllCampaignHistory }) => {
   const [loding, setLoding] = useState(false)
-const isFocused=useIsFocused()
+  const isFocused = useIsFocused()
   const { running } = useSelector((state) => state.CampaignHistory)
   // console.log(running, 'run')
 
@@ -33,10 +33,21 @@ const isFocused=useIsFocused()
               <ActivityIndicator size={80} color={'#ff3259'} />
             </View>) : (
             <>
-              {running == null ? (
-                <Text style={{ textAlign: 'center' }}> No Data Found</Text>
+              {running == null ? (<>
+                <View style={{
+                  width: '100%', height: 600, justifyContent: 'center',
+                  alignItems: 'center'
+                }}>
+                  <Image source={require('../../Images/truck.png')}
+
+                    style={{ width: 250, height: 250, resizeMode: 'contain' }}
+
+                  />
+                  <Text style={{ textAlign: 'center', fontSize:16, marginTop:18 }}> You don't have running Campaign</Text>
+                </View>
 
 
+              </>
               ) : (
                 <>
                   <Card
@@ -98,7 +109,7 @@ const isFocused=useIsFocused()
                   </TouchableOpacity>
                 </>
               )}
- 
+
             </>
 
           )

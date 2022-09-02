@@ -2,25 +2,63 @@ import {
   StyleSheet,
   Image,
   StatusBar,
-  ScrollView,
+  FlatList,
   Dimensions,
   Text,
   SafeAreaView,
   TouchableOpacity,
+  ActivityIndicator,
   View,
 } from 'react-native';
-
-import React from 'react';
+import Axios from 'axios'
+import React, { useState, useEffect } from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { Base_url } from '../../Utils/BaseUrl';
+import moment from 'moment';
 
-const {height, width} = Dimensions.get('screen');
+const { height, width } = Dimensions.get('screen');
 // console.log(width);
-const Notification = ({navigation}) => {
+const Notification = ({ navigation }) => {
+  const [lodding, setLoding] = React.useState(false);
+  const [nitiFications, setNitiFications] = React.useState([]);
+  const getNotification = () => {
+    setLoding(true)
+    Axios.get(`${Base_url}/notifications`)
+      .then(response => {
+        // console.log(response.data)
+        if (response.data) {
+          console.log(response.data.notification[0]);
+          setLoding(false)
+        }
+        setNitiFications(response.data.notification)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+  useEffect(() => {
+    getNotification()
+  }, [])
+const randerItem=({item})=>{
+  return (
+    <View style={styles.itemView}>
+      <View
+        style={{ width: '80%', height: '100%', justifyContent: 'center' }}>
+        <Text>{item.message}</Text>
+      </View>
+      <View
+        style={{ width: '20%', height: '100%', justifyContent: 'center', alignItems: 'flex-end' }}>
+        <Text>{moment(item.updated_at).fromNow()}</Text>
+      </View>
+    </View>
+
+  )
+}
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
-        <View style={{flex: 1, backgroundColor: 'white'}}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
           <StatusBar
             animated={true}
             backgroundColor="#ff3259"
@@ -41,7 +79,7 @@ const Notification = ({navigation}) => {
                 </TouchableOpacity>
               </View>
               <View style={styles.topViewMiddle}>
-                <Text style={{color: 'white', fontSize: 20, fontWeight: '600'}}>
+                <Text style={{ color: 'white', fontSize: 20, fontWeight: '600' }}>
                   Notification
                 </Text>
               </View>
@@ -51,50 +89,36 @@ const Notification = ({navigation}) => {
           {/* ======top======== */}
 
           <View style={styles.topView1}>
-            <Text style={{color: '#ff3259', fontSize: 20, fontWeight: '900'}}>
+            <Text style={{ color: '#ff3259', fontSize: 20, fontWeight: '900' }}>
               Mark all as read
             </Text>
 
-            <Text style={{color: '#ff3259', fontSize: 20, fontWeight: '900'}}>
+            <Text style={{ color: '#ff3259', fontSize: 20, fontWeight: '900' }}>
               clear all
             </Text>
           </View>
           {/* ======top======== */}
           {/* ======Item======== */}
-          <View style={styles.itemView}>
-            <View
-              style={{width: '80%', height: '100%', justifyContent: 'center'}}>
-              <Text>Your compaign is started Your compaign is paused</Text>
-            </View>
-            <View
-              style={{width: '20%', height: '100%', justifyContent: 'center'}}>
-              <Text>6 mins ago</Text>
-            </View>
-          </View>
+
           {/* ======Item======== */}
-          <View style={styles.itemView}>
-            <View
-              style={{width: '80%', height: '100%', justifyContent: 'center'}}>
-              <Text>Your compaign is started Your compaign is paused</Text>
-            </View>
-            <View
-              style={{width: '20%', height: '100%', justifyContent: 'center'}}>
-              <Text>6 mins ago</Text>
-            </View>
-          </View>
-          {/* ======Item======== */}
-          <View style={styles.itemView}>
-            <View
-              style={{width: '80%', height: '100%', justifyContent: 'center'}}>
-              <Text>Your compaign is started Your compaign is paused</Text>
-            </View>
-            <View
-              style={{width: '20%', height: '100%', justifyContent: 'center'}}>
-              <Text>6 mins ago</Text>
-            </View>
-          </View>
-          
-         
+          {lodding ? (
+            <ActivityIndicator size={80} color={'#ff3259'} />) : (
+            <>
+              <FlatList
+                data={nitiFications}
+                keyExtractor={(item, i) => i.toString()}
+                  renderItem={(item, i) => randerItem(item)}
+                  ListEmptyComponent={() => (
+                    <View style={{width:'100%', height:500,
+                    justifyContent:'center',alignItems:'center'}}>
+                      <Text>No Data found</Text>
+                    </View>
+                  )}
+                
+              />
+              </>
+          )}
+
         </View>
       </SafeAreaView>
     </>

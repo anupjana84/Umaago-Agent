@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+
 import {
   ScrollView,
   Platform,
@@ -22,7 +22,7 @@ import CameraModal from '../../Components/CameraModal';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { Base_url } from '../../Utils/BaseUrl';
 import { alertMessage } from '../../Components/AlertMessage';
-import FlashMessage from "react-native-flash-message";
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Loder from '../../Components/Loder';
 import { useDispatch } from 'react-redux';
@@ -752,7 +752,7 @@ if (pass.length<6) {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />
-      <FlashMessage />
+   
     </SafeAreaView>
    {lodding && <Loder lodding={lodding}/>}  
     </>

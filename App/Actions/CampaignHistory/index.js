@@ -24,15 +24,21 @@ export const getAllCampaignHistory= (setLoding)=> async(dispatch)=>{
     setLoding(true)
     Axios.get(`${Base_url}/home`)
         .then(response => {
+            
             if (response.data) {
                 setLoding(false)
-            }
-            dispatch({
+
+               
+                 dispatch({
                 type:ALL_CAMPAIGN_HISTORY,
                 payload:{
-                    data:response.data
+                    data:response.data,
+                   
                 }
             })
+            }
+           
+           
             // console.log(response.data,'ddd')
         })
         .catch(error => {
