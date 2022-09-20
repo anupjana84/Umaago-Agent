@@ -462,7 +462,7 @@ const RouteMap = ({ navigation }) => {
           <MapViewDirections
             origin={origin}
             destination={destination1}
-            apikey={'AIzaSyAn9wVgUpu0h_LAHr0LPrzcKQjQ9uVczT8'} // insert your API Key here
+            apikey={''} // insert your API Key here
             strokeWidth={6}
             strokeColor="#1b5a90"
             optimizeWaypoints={true}
